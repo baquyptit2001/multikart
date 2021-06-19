@@ -6,9 +6,10 @@ import Cat from './vue/backend/components/category/index'
 import Brand from './vue/backend/components/brand/index'
 import ProductColor from './vue/backend/components/product/product_color/index'
 import ElementUI from 'element-ui';
+import locale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css';
 
-Vue.use(ElementUI);
+Vue.use(ElementUI, { locale })
 
 
 // backend ------------------------------------

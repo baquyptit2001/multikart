@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController\BrandController;
 use App\Http\Controllers\AdminController\CategoryController;
+use App\Http\Controllers\AdminController\ProductColorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,14 @@ Route::prefix('/backend')->group(function(){
         Route::post('/store', [CategoryController::class, 'store']);
         Route::put('/{id}', [CategoryController::class, 'update']);
         Route::delete('/{id}', [CategoryController::class, 'destroy']);
+    });
+    Route::prefix('/product')->group(function(){
+        Route::get('/colors', [ProductColorController::class, 'index']);
+        Route::prefix('/color')->group(function(){
+            Route::post('/store', [ProductColorController::class, 'store']);
+            Route::put('/{id}', [ProductColorController::class, 'update']);
+            Route::delete('/{id}', [ProductColorController::class, 'destroy']);
+        });
     });
     Route::get('/brands', [BrandController::class, 'index']);
     Route::prefix('/brand')->group(function(){

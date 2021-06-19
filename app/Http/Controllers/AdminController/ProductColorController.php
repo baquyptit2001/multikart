@@ -15,7 +15,8 @@ class ProductColorController extends Controller
      */
     public function index()
     {
-        //
+        $item = ProductColor::all();
+        return $item;
     }
 
     /**
@@ -36,7 +37,11 @@ class ProductColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new ProductColor;
+        $item->name = $request->item['name'];
+        $item->color_code = $request->item['color_code'];
+        $item->save();
+        return $item;
     }
 
     /**
