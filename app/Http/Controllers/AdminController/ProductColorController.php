@@ -73,9 +73,13 @@ class ProductColorController extends Controller
      * @param  \App\Models\ProductColor  $productColor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductColor $productColor)
+    public function update(Request $request, $id)
     {
-        //
+        $item = ProductColor::find($id);
+        $item->name = $request->item['name'];
+        $item->color_code = $request->item['color_code'];
+        $item->save();
+        return $item;
     }
 
     /**
@@ -84,8 +88,10 @@ class ProductColorController extends Controller
      * @param  \App\Models\ProductColor  $productColor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductColor $productColor)
+    public function destroy($id)
     {
-        //
+        $item = ProductColor::find($id);
+        $item->delete();
+        return "Delete Success";
     }
 }
