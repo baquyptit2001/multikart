@@ -6,6 +6,7 @@ use App\Models\Size;
 use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Category;
+use App\Models\ProductSize;
 use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
