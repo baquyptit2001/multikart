@@ -2,9 +2,16 @@
 
 namespace App\Http\Controllers\AdminController;
 
-use App\Http\Controllers\Controller;
+use App\Models\Size;
+use App\Models\Brand;
+use App\Models\Color;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\ProductSize;
+use App\Models\ProductColor;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -15,7 +22,17 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $item = Product::with(['category', 'brand', 'sizes', 'colors', 'images'])->get();
+        return response()->json($item);
+    }
+
+    public function init()
+    {
+        $category = Category::where('parent_id','>',0)->get();
+        $brand = Brand::all();
+        $size = ProductSize::all();
+        $color = ProductColor::all();
+        return response()->json([$category,$brand,$size,$color]);
     }
 
     /**
@@ -23,9 +40,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -36,7 +53,38 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+        $product->name = $request->item['name'];
+        $product->image = $request->item['image'];
+        $product->description = $request->item['description'];
+        $product->slug = $request->item['slug'];
+        $product->category_id = $request->item['category_id'];
+        $product->brand_id = $request->item['brand_id'];
+        $product->price = $request->item['price'];
+        $product->sale_price = ($request->item['sale_price'] == '') ? 0 : $request->item['sale_price'];
+        $product->status = $request->item['status'];
+        if($product->save()){
+            foreach ($request->item['size_id'] as $value) {
+                $size = new Size;
+                $size->product_id = $product->id;
+                $size->size_id = $value;
+                $size->save();
+            }
+            foreach ($request->item['color_id'] as $value) {
+                $color = new Color;
+                $color->product_id = $product->id;
+                $color->color = $value;
+                $color->save();
+            }
+            $detailImg = explode(' ', $request->item['imageDetail']);
+            foreach ($detailImg as $value) {
+                $img = new ProductImage;
+                $img->image = $value;
+                $img->product_id = $product->id;
+                $img->save();
+            }
+        }
+        return response()->json($product);
     }
 
     /**

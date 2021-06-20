@@ -15,7 +15,8 @@ class ProductSizeController extends Controller
      */
     public function index()
     {
-        //
+        $item = ProductSize::all();
+        return $item;
     }
 
     /**
@@ -36,7 +37,10 @@ class ProductSizeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new ProductSize;
+        $item->name = $request->item['name'];
+        $item->save();
+        return $item;
     }
 
     /**
@@ -68,9 +72,12 @@ class ProductSizeController extends Controller
      * @param  \App\Models\ProductSize  $productSize
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductSize $productSize)
+    public function update(Request $request, $id)
     {
-        //
+        $item = ProductSize::find($id);
+        $item->name = $request->item['name'];
+        $item->save();
+        return $item;
     }
 
     /**
@@ -79,8 +86,10 @@ class ProductSizeController extends Controller
      * @param  \App\Models\ProductSize  $productSize
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductSize $productSize)
+    public function destroy($id)
     {
-        //
+        $item = ProductSize::find($id);
+        $item->delete();
+        return "Delete Successful !!";
     }
 }

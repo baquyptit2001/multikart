@@ -28,6 +28,12 @@ Route::prefix('backend')->group(function () {
         Route::get('/color', function () {
             return view('backend.page.product.product_color.index');
         });
+        Route::get('/size', function () {
+            return view('backend.page.product.product_size.index');
+        });
+        Route::get('/', function () {
+            return view('backend.page.product.index');
+        });
     });
     Route::get('/index', function(){
         return view('backend.page.index');

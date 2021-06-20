@@ -23,10 +23,6 @@ class CreateProductsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedBigInteger('brand_id');
             $table->foreign('brand_id')->references('id')->on('brands');
-            $table->unsignedBigInteger('color_id');
-            $table->foreign('color_id')->references('id')->on('product_colors');
-            $table->unsignedBigInteger('size_id');
-            $table->foreign('size_id')->references('id')->on('product_sizes');
             $table->float('price');
             $table->float('sale_price')->nullable()->default(0);
             $table->tinyInteger('is_recommend')->default(1);

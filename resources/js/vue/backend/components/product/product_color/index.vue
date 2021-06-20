@@ -77,7 +77,7 @@
                             style="width:100px"
                             >
                             <template slot-scope="scope">
-                                <div :style="'background: '+scope.row.color_code+';width:500px !important;height:100px !important'"></div>
+                                <div :style="'background: '+scope.row.color_code+';width:120px !important;height:100px !important'"></div>
                             </template>
                             </el-table-column>
                             <el-table-column
