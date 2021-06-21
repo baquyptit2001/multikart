@@ -116,9 +116,50 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $product->name = $request->item['name'];
+        $product->image = $request->item['image'];
+        $product->brand_id = $request->item['brand_id'];
+        $product->category_id = $request->item['category_id'];
+        $product->sale_price = ($request->item['sale_price'] == '') ? 0 : $request->item['sale_price'];
+        $product->slug = $request->item['slug'];
+        $product->description = $request->item['description'];
+        $product->status = $request->item['status'];
+        if($product->save()){
+            while(Size::where('product_id',$id)->first() != null){
+                $del = Size::where('product_id',$id)->first();
+                $del->delete();
+            }
+            foreach ($request->item['size_id'] as $value) {
+                $size = new Size;
+                $size->product_id = $product->id;
+                $size->size_id = $value;
+                $size->save();
+            }
+            while(Color::where('product_id',$id)->first() != null){
+                $del = Color::where('product_id',$id)->first();
+                $del->delete();
+            }
+            foreach ($request->item['color_id'] as $value) {
+                $color = new Color;
+                $color->product_id = $product->id;
+                $color->color = $value;
+                $color->save();
+            }
+            $detailImg = explode(' ', $request->item['imageDetail']);
+            while(ProductImage::where('product_id',$id)->first() != null){
+                $del = ProductImage::where('product_id',$id)->first();
+                $del->delete();
+            }
+            foreach ($detailImg as $value) {
+                $img = new ProductImage;
+                $img->image = $value;
+                $img->product_id = $product->id;
+                $img->save();
+            }
+        }
     }
 
     /**
@@ -127,8 +168,22 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $item = Product::find($id);
+        while(Size::where('product_id',$id)->first() != null){
+            $del = Size::where('product_id',$id)->first();
+            $del->delete();
+        }
+        while(Color::where('product_id',$id)->first() != null){
+            $del = Color::where('product_id',$id)->first();
+            $del->delete();
+        }
+        while(ProductImage::where('product_id',$id)->first() != null){
+            $del = ProductImage::where('product_id',$id)->first();
+            $del->delete();
+        }
+        $item->delete();
+        return "Delete Success !!";
     }
 }
