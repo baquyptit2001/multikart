@@ -39,3 +39,13 @@ Route::prefix('backend')->group(function () {
         return view('backend.page.index');
     });
 });
+
+Route::prefix('account')->group(function () {
+    Route::get('/login-register', function () {
+        return view('frontend.page.login.index');
+    });
+});
+
+Route::get('/', function () {
+    return view('frontend.page.home.index');
+});

@@ -7,6 +7,8 @@ import Brand from './vue/backend/components/brand/index'
 import ProductColor from './vue/backend/components/product/product_color/index'
 import ProductSize from './vue/backend/components/product/product_size/index'
 import Product from './vue/backend/components/product/index'
+import Home from './vue/frontend/home'
+import Login from './vue/frontend/components/account/login'
 import ElementUI from 'element-ui';
 import locale from 'element-ui/lib/locale/lang/en'
 import 'element-ui/lib/theme-chalk/index.css';
@@ -17,7 +19,7 @@ Vue.use(ElementUI, { locale })
 // backend ------------------------------------
 const app = new Vue({
     el: '#app',
-    components: {App,Cat,Brand,ProductColor,ProductSize,Product}
+    components: {App,Cat,Brand,ProductColor,ProductSize,Product,Home,Login}
 });
 
 // new Vue({

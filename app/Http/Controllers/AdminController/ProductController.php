@@ -28,11 +28,11 @@ class ProductController extends Controller
 
     public function init()
     {
-        $category = Category::where('parent_id','>',0)->get();
+        $category = Category::where('parent_id', '>', 0)->get();
         $brand = Brand::all();
         $size = ProductSize::all();
         $color = ProductColor::all();
-        return response()->json([$category,$brand,$size,$color]);
+        return response()->json([$category, $brand, $size, $color]);
     }
 
     /**
@@ -42,13 +42,13 @@ class ProductController extends Controller
      */
     public function create(Request $request)
     {
-        
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -63,7 +63,7 @@ class ProductController extends Controller
         $product->price = $request->item['price'];
         $product->sale_price = ($request->item['sale_price'] == '') ? 0 : $request->item['sale_price'];
         $product->status = $request->item['status'];
-        if($product->save()){
+        if ($product->save()) {
             foreach ($request->item['size_id'] as $value) {
                 $size = new Size;
                 $size->product_id = $product->id;
@@ -90,7 +90,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function show(Product $product)
@@ -101,7 +101,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
@@ -112,8 +112,8 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -127,9 +127,9 @@ class ProductController extends Controller
         $product->slug = $request->item['slug'];
         $product->description = $request->item['description'];
         $product->status = $request->item['status'];
-        if($product->save()){
-            while(Size::where('product_id',$id)->first() != null){
-                $del = Size::where('product_id',$id)->first();
+        if ($product->save()) {
+            while (Size::where('product_id', $id)->first() != null) {
+                $del = Size::where('product_id', $id)->first();
                 $del->delete();
             }
             foreach ($request->item['size_id'] as $value) {
@@ -138,8 +138,8 @@ class ProductController extends Controller
                 $size->size_id = $value;
                 $size->save();
             }
-            while(Color::where('product_id',$id)->first() != null){
-                $del = Color::where('product_id',$id)->first();
+            while (Color::where('product_id', $id)->first() != null) {
+                $del = Color::where('product_id', $id)->first();
                 $del->delete();
             }
             foreach ($request->item['color_id'] as $value) {
@@ -149,8 +149,8 @@ class ProductController extends Controller
                 $color->save();
             }
             $detailImg = explode(' ', $request->item['imageDetail']);
-            while(ProductImage::where('product_id',$id)->first() != null){
-                $del = ProductImage::where('product_id',$id)->first();
+            while (ProductImage::where('product_id', $id)->first() != null) {
+                $del = ProductImage::where('product_id', $id)->first();
                 $del->delete();
             }
             foreach ($detailImg as $value) {
@@ -165,22 +165,22 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $item = Product::find($id);
-        while(Size::where('product_id',$id)->first() != null){
-            $del = Size::where('product_id',$id)->first();
+        while (Size::where('product_id', $id)->first() != null) {
+            $del = Size::where('product_id', $id)->first();
             $del->delete();
         }
-        while(Color::where('product_id',$id)->first() != null){
-            $del = Color::where('product_id',$id)->first();
+        while (Color::where('product_id', $id)->first() != null) {
+            $del = Color::where('product_id', $id)->first();
             $del->delete();
         }
-        while(ProductImage::where('product_id',$id)->first() != null){
-            $del = ProductImage::where('product_id',$id)->first();
+        while (ProductImage::where('product_id', $id)->first() != null) {
+            $del = ProductImage::where('product_id', $id)->first();
             $del->delete();
         }
         $item->delete();
