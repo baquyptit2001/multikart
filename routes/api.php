@@ -68,4 +68,6 @@ Route::prefix('/backend')->group(function(){
 });
 
 Route::post('/register', [AuthController::class, 'register']);
+Route::post('/forgot', [AuthController::class, 'checkForgot']);
+Route::post('/reset/{token}', [AuthController::class, 'passUpdate']);
 Route::post('/login', [AuthController::class, 'login']);

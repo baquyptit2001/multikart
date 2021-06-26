@@ -176,6 +176,7 @@ export default {
                 status:true,
                 id:''
             },
+            user:[],
             formLabelWidth: '120px',
         }
     },

@@ -1,9 +1,9 @@
 @extends('frontend.layout.layout')
 
-@section('title','Bá Quý - B19DCCN536')
+@section('title','Quên mật khẩu')
 
 @section('content')
     <div class="wrapper" id="app">
-        <login></login>
+        <forgot></forgot>
     </div>
 @endsection

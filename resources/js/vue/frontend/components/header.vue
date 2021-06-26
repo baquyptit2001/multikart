@@ -240,8 +240,14 @@
                                                         <span class="mm-text">Shop Pages</span>
                                                     </a>
                                                     <ul>
-                                                        <li>
+                                                        <li v-if="display_name">
                                                             <a href="https://demo.hasthemes.com/airi-preview/airi/my-account.html">
+                                                                <span class="mm-text">Hello, {{ display_name }}</span>
+                                                            </a>
+                                                        </li>
+                                                        <hr v-if="display_name">
+                                                        <li>
+                                                            <a href="https://demo.hasthemes.com/airi-preview/airi/cart.html">
                                                                 <span class="mm-text">My Account</span>
                                                             </a>
                                                         </li>
@@ -268,6 +274,11 @@
                                                         <li>
                                                             <a href="https://demo.hasthemes.com/airi-preview/airi/compare.html">
                                                                 <span class="mm-text">compare</span>
+                                                            </a>
+                                                        </li>
+                                                        <li v-if="display_name" @click="logOut()">
+                                                            <a href="#">
+                                                                <span class="mm-text">Log Out</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -436,6 +447,10 @@
                                             <i class="fa fa-user-circle-o"></i>
                                         </a>
                                         <ul class="user-info-menu">
+                                            <li v-if="display_name">
+                                                <a href="#">Hello, {{ display_name }}</a>
+                                            </li>
+                                            <hr v-if="display_name">
                                             <li>
                                                 <a href="https://demo.hasthemes.com/airi-preview/airi/my-account.html">My Account</a>
                                             </li>
@@ -453,6 +468,9 @@
                                             </li>
                                             <li>
                                                 <a href="https://demo.hasthemes.com/airi-preview/airi/compare.html">compare</a>
+                                            </li>
+                                            <li v-if="display_name" @click="logOut()">
+                                                <a href="#">Log Out</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -718,6 +736,12 @@
                                                         <span class="mm-text">Shop Pages</span>
                                                     </a>
                                                     <ul>
+                                                        <li v-if="display_name">
+                                                            <a href="#">
+                                                                <span class="mm-text">Hello, {{ display_name }}</span>
+                                                            </a>
+                                                        </li>
+                                                        <hr v-if="display_name">
                                                         <li>
                                                             <a href="https://demo.hasthemes.com/airi-preview/airi/my-account.html">
                                                                 <span class="mm-text">My Account</span>
@@ -746,6 +770,11 @@
                                                         <li>
                                                             <a href="https://demo.hasthemes.com/airi-preview/airi/compare.html">
                                                                 <span class="mm-text">compare</span>
+                                                            </a>
+                                                        </li>
+                                                        <li v-if="display_name" @click="logOut()">
+                                                            <a href="#">
+                                                                <span class="mm-text">Log Out</span>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -914,6 +943,10 @@
                                             <i class="fa fa-user-circle-o"></i>
                                         </a>
                                         <ul class="user-info-menu">
+                                            <li v-if="display_name">
+                                                <a href="https://demo.hasthemes.com/airi-preview/airi/my-account.html">Hello, {{ display_name }}</a>
+                                            </li>
+                                            <hr v-if="display_name">
                                             <li>
                                                 <a href="https://demo.hasthemes.com/airi-preview/airi/my-account.html">My Account</a>
                                             </li>
@@ -931,6 +964,9 @@
                                             </li>
                                             <li>
                                                 <a href="https://demo.hasthemes.com/airi-preview/airi/compare.html">compare</a>
+                                            </li>
+                                            <li v-if="display_name" @click="logOut()">
+                                                <a href="#">Log Out</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -978,6 +1014,10 @@
                                             <i class="fa fa-user-circle-o"></i>
                                         </a>
                                         <ul class="user-info-menu">
+                                            <li v-if="display_name">
+                                                <a href="https://demo.hasthemes.com/airi-preview/airi/my-account.html">Hello, {{ display_name }}</a>
+                                            </li>
+                                            <hr v-if="display_name">
                                             <li>
                                                 <a href="https://demo.hasthemes.com/airi-preview/airi/my-account.html">My Account</a>
                                             </li>
@@ -995,6 +1035,9 @@
                                             </li>
                                             <li>
                                                 <a href="https://demo.hasthemes.com/airi-preview/airi/compare.html">compare</a>
+                                            </li>
+                                            <li v-if="display_name" @click="logOut()">
+                                                <a href="#">Log Out</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -1252,6 +1295,12 @@
                                                         Shop Pages
                                                     </a>
                                                     <ul class="dl-submenu">
+                                                        <li v-if="display_name">
+                                                            <a href="https://demo.hasthemes.com/airi-preview/airi/my-account.html">
+                                                                Hello, {{ display_name }}
+                                                            </a>
+                                                        </li>
+                                                        <hr v-if="display_name">
                                                         <li>
                                                             <a href="https://demo.hasthemes.com/airi-preview/airi/my-account.html">
                                                                 My Account
@@ -1280,6 +1329,11 @@
                                                         <li>
                                                             <a href="https://demo.hasthemes.com/airi-preview/airi/compare.html">
                                                                 compare
+                                                            </a>
+                                                        </li>
+                                                        <li v-if="display_name" @click="logOut()">
+                                                            <a href="#">
+                                                                Log Out
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -1431,3 +1485,47 @@
         </header>
     </span>
 </template>
+
+<script>
+export default {
+    data: function(){
+        return {
+            display_name: localStorage.getItem('display_name'),
+            token: localStorage.getItem('token')
+        }
+    },
+    methods:{
+        logOut(){
+            axios.post('http://localhost:8000/api/logout',{
+                data:1
+            },{
+                headers: {
+                    'Authorization': 'Bearer ' + this.token
+                }
+            })
+            .then(response=>{
+                if(response.status == 200){
+                    // this.item.name = "";
+                    // this.$emit('reloadlist');
+                    this.$notify({
+                        title: 'Thành công',
+                        message: 'Đăng xuất thành công',
+                        type: 'success'
+                    });
+                    this.clear();
+                    this.display_name = '';
+                }
+            })
+            .catch(error=>{
+                console.log(error);
+                this.$message.error(error);
+            })
+        },
+        clear(){
+            localStorage.clear();
+        }
+    },
+    created(){
+    }
+}
+</script>

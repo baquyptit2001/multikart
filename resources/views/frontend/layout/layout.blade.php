@@ -32,6 +32,7 @@
 
     <!-- style CSS -->
     <link rel="stylesheet" href="https://demo.hasthemes.com/airi-preview/airi/assets/css/main.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
     <!-- modernizr JS
     ============================================ -->
@@ -52,8 +53,7 @@
         </div>
     </div>
 
-
-@yield('content')
+    @yield('content')
 
 
 <!-- END FOOTER -->
@@ -87,6 +87,8 @@
     <script src="https://demo.hasthemes.com/airi-preview/airi/assets/js/revoulation/extensions/revolution.extension.slideanims.min.js"></script>
     <script src="https://demo.hasthemes.com/airi-preview/airi/assets/js/revoulation/extensions/revolution.extension.video.min.js"></script>
     <script src="{{ mix('js/app.js') }}"></script>
+    <script src="https://kit.fontawesome.com/9fd97b7f3f.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <!-- REVOLUTION ACTIVE JS FILES -->
     <script src="https://demo.hasthemes.com/airi-preview/airi/assets/js/revoulation.js"></script>
 

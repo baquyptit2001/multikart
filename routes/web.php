@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,9 @@ Route::prefix('backend')->group(function () {
 Route::prefix('account')->group(function () {
     Route::get('/login-register', function () {
         return view('frontend.page.login.index');
-    });
+    })->name('login');
+    Route::get('/forgot', [AuthController::class, 'forgot'])->name('password.update');
+    Route::get('/reset/{token}', [AuthController::class, 'passReset'])->name('password.reset');
 });
 
 Route::get('/', function () {
