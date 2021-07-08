@@ -58,7 +58,7 @@
 
 <!-- END FOOTER -->
 
-<script src="https://demo.hasthemes.com/airi-preview/airi/assets/js/vendor/jquery.min.js"></script>
+    <script src="https://demo.hasthemes.com/airi-preview/airi/assets/js/vendor/jquery.min.js"></script>
 
     <!-- Bootstrap and Popper Bundle JS -->
     <script src="https://demo.hasthemes.com/airi-preview/airi/assets/js/bootstrap.bundle.min.js"></script>
@@ -89,6 +89,7 @@
     <script src="{{ mix('js/app.js') }}"></script>
     <script src="https://kit.fontawesome.com/9fd97b7f3f.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/vue-slick-carousel"></script>
     <!-- REVOLUTION ACTIVE JS FILES -->
     <script src="https://demo.hasthemes.com/airi-preview/airi/assets/js/revoulation.js"></script>
 

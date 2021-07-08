@@ -26,7 +26,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware'=>['auth:sanctum']], function (){
     Route::get('/users', [AuthController::class, 'users']);
+    Route::get('/user/{id}', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logOut']);
+    Route::post('/account', [AuthController::class, 'updateInfo']);
 });
 
 Route::prefix('/backend')->group(function(){
@@ -40,6 +42,7 @@ Route::prefix('/backend')->group(function(){
     Route::get('/products', [ProductController::class, 'index']);
     Route::prefix('/product')->group(function(){
         Route::get('/init', [ProductController::class, 'init']);
+        Route::get('/{id}', [ProductController::class, 'proById']);
         Route::post('/store', [ProductController::class, 'store']);
         Route::put('/{id}', [ProductController::class, 'update']);
         Route::delete('/{id}', [ProductController::class, 'destroy']);

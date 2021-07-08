@@ -36,6 +36,12 @@ class AuthController extends Controller
         return response()->json(['user'=>$user, 'token'=>$token], 201);
     }
 
+    public function user($id)
+    {
+        $user = User::find($id);
+        return response()->json($user,200);
+    }
+
     public function login(Request $request){
 //        return $request;
         $fields = $request->validate([
@@ -117,5 +123,26 @@ class AuthController extends Controller
         return $status == Password::PASSWORD_RESET
                     ? redirect()->route('login')->with('status', __($status))
                     : back()->withErrors(['email' => [__($status)]]);
+    }
+
+    public function updateInfo(Request $request){
+        $user = User::find($request->id);
+        if($request->current_password != ''){
+            $request->validate([
+                'password' => 'required|confirmed',
+            ]);
+            if(Hash::check($request->current_password, $user->password)){
+                $user->update([
+                    'password' => bcrypt($request->password)
+                ]);
+            }
+        }
+        $user->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'display_name' => $request->display_name,
+            'email' => $request->email,
+        ]);
+        return response()->json($user, 200);
     }
 }

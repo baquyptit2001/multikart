@@ -275,6 +275,11 @@
                                                             <span class="mm-text">compare</span>
                                                         </a>
                                                     </li>
+                                                    <li v-if="display_name" @click="logOut()">
+                                                        <a href="#">
+                                                            <span class="mm-text">Log Out</span>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li class="d-none d-lg-block banner-holder">
@@ -462,6 +467,9 @@
                                         <li>
                                             <a href="https://demo.hasthemes.com/airi-preview/airi/compare.html">compare</a>
                                         </li>
+                                        <li v-if="display_name" @click="logOut">
+                                            <a href="#">Log Out</a>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li class="header-toolbar__item">
@@ -493,7 +501,46 @@ export default {
     data: function(){
         return {
             display_name: localStorage.getItem('display_name'),
+            token: localStorage.getItem('token')
         }
+    },
+    methods:{
+        logOut(){
+            axios.post('http://localhost:8000/api/logout',{
+                data:1
+            },{
+                headers: {
+                    'Authorization': 'Bearer ' + this.token
+                }
+            })
+            .then(response=>{
+                if(response.status == 200){
+                    // this.item.name = "";
+                    // this.$emit('reloadlist');
+                    this.$notify({
+                        title: 'Thành công',
+                        message: 'Đăng xuất thành công',
+                        type: 'success'
+                    });
+                    this.clear();
+                    this.display_name = '';
+                }
+            })
+            .catch(error=>{
+                console.log(error);
+                this.$message.error(error);
+            })
+        },
+        get_display(){
+            this.display_name = localStorage.getItem('display_name');
+        },
+        clear(){
+            localStorage.clear();
+        }
+    },
+    created(){
+        // this.clear();
+        // this.get_display();
     }
 }
 </script>

@@ -140,7 +140,7 @@ export default {
                         type: 'success'
                     });
                     localStorage.setItem("id", response.data.user.id);
-                    localStorage.setItem("display_name", response.data.user.user_name);
+                    localStorage.setItem("display_name", response.data.user.display_name);
                     localStorage.setItem("token", response.data.token);
                     window.location.replace("http://localhost:8000/");
                 }

@@ -35,6 +35,12 @@ class ProductController extends Controller
         return response()->json([$category, $brand, $size, $color]);
     }
 
+    public function proById($id)
+    {
+        $product = Product::where('id',$id)->with(['category', 'brand', 'colors', 'sizes', 'images'])->get();
+        return response()->json($product, 200);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

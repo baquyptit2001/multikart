@@ -23,8 +23,7 @@
                                 <h4 class="mb--35 mb-sm--20">Forgot Password</h4>
                                 <div class="form__group mb--20">
                                     <label class="form__label form__label--2" for="username_email">Email<span class="required">*</span></label>
-                                    <input type="text" class="form__input form__input--3" id="username_email"
-                                        name="username_email" v-model="email">
+                                    <input type="text" class="form__input form__input--3" id="username_email" name="username_email" v-model="email">
                                 </div>
                                 <div class="d-flex align-items-center mb--20">
                                     <div class="form__group">
